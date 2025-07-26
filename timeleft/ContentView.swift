@@ -308,49 +308,76 @@ struct EventDetailView: View {
             if event.date > currentDate {
                 VStack(spacing: 20) {
                     if totalDaysInPeriod > 90 {
-                        HStack(spacing: 4) {
-                            Text(formattedTimeRemaining.months)
-                                .font(.title2)
-                                .fontWeight(.semibold)
-                                .foregroundColor(.orange)
-                            
-                            Text(formattedTimeRemaining.weeks)
-                                .font(.title2)
-                                .fontWeight(.semibold)
-                                .foregroundColor(.purple)
-                            
-                            Text(formattedTimeRemaining.days)
-                                .font(.title2)
-                                .fontWeight(.semibold)
-                                .foregroundColor(.blue)
+                        VStack(spacing: 15) {
+                            HStack(spacing: 15) {
+                                if !formattedTimeRemaining.months.isEmpty {
+                                    TimeUnitCard(
+                                        value: String(daysRemaining / 30),
+                                        unit: daysRemaining / 30 == 1 ? "Month" : "Months",
+                                        color: .orange
+                                    )
+                                }
+                                
+                                if !formattedTimeRemaining.weeks.isEmpty {
+                                    TimeUnitCard(
+                                        value: String((daysRemaining % 30) / 7),
+                                        unit: (daysRemaining % 30) / 7 == 1 ? "Week" : "Weeks",
+                                        color: .purple
+                                    )
+                                }
+                                
+                                if !formattedTimeRemaining.days.isEmpty {
+                                    TimeUnitCard(
+                                        value: String((daysRemaining % 30) % 7),
+                                        unit: (daysRemaining % 30) % 7 == 1 ? "Day" : "Days",
+                                        color: .blue
+                                    )
+                                }
+                            }
                             
                             Text("remaining")
-                                .font(.title2)
-                                .fontWeight(.semibold)
-                                .foregroundColor(.primary)
+                                .font(.title3)
+                                .fontWeight(.medium)
+                                .foregroundColor(.secondary)
                         }
                     } else if totalDaysInPeriod > 30 {
-                        HStack(spacing: 4) {
-                            Text(formattedTimeRemaining.weeks)
-                                .font(.title2)
-                                .fontWeight(.semibold)
-                                .foregroundColor(.purple)
-                            
-                            Text(formattedTimeRemaining.days)
-                                .font(.title2)
-                                .fontWeight(.semibold)
-                                .foregroundColor(.blue)
+                        VStack(spacing: 15) {
+                            HStack(spacing: 15) {
+                                if !formattedTimeRemaining.weeks.isEmpty {
+                                    TimeUnitCard(
+                                        value: String(daysRemaining / 7),
+                                        unit: daysRemaining / 7 == 1 ? "Week" : "Weeks",
+                                        color: .purple
+                                    )
+                                }
+                                
+                                if !formattedTimeRemaining.days.isEmpty {
+                                    TimeUnitCard(
+                                        value: String(daysRemaining % 7),
+                                        unit: daysRemaining % 7 == 1 ? "Day" : "Days",
+                                        color: .blue
+                                    )
+                                }
+                            }
                             
                             Text("remaining")
-                                .font(.title2)
-                                .fontWeight(.semibold)
-                                .foregroundColor(.primary)
+                                .font(.title3)
+                                .fontWeight(.medium)
+                                .foregroundColor(.secondary)
                         }
                     } else {
-                        Text("\(daysRemaining) days remaining")
-                            .font(.title2)
-                            .fontWeight(.semibold)
-                            .foregroundColor(.primary)
+                        VStack(spacing: 15) {
+                            TimeUnitCard(
+                                value: String(daysRemaining),
+                                unit: daysRemaining == 1 ? "Day" : "Days",
+                                color: .blue
+                            )
+                            
+                            Text("remaining")
+                                .font(.title3)
+                                .fontWeight(.medium)
+                                .foregroundColor(.secondary)
+                        }
                     }
                     
                     DotVisualizationView(
@@ -521,6 +548,36 @@ struct EditEventView: View {
     }
 }
 
+struct TimeUnitCard: View {
+    let value: String
+    let unit: String
+    let color: Color
+    
+    var body: some View {
+        VStack(spacing: 8) {
+            Text(value)
+                .font(.title)
+                .fontWeight(.bold)
+                .foregroundColor(color)
+            
+            Text(unit)
+                .font(.caption)
+                .fontWeight(.medium)
+                .foregroundColor(.secondary)
+                .textCase(.uppercase)
+        }
+        .frame(minWidth: 60)
+        .padding(.vertical, 12)
+        .padding(.horizontal, 16)
+        .background(color.opacity(0.1))
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(color.opacity(0.3), lineWidth: 1)
+        )
+        .cornerRadius(12)
+    }
+}
+
 struct DotVisualizationView: View {
     let totalDays: Int
     let daysRemaining: Int
@@ -547,83 +604,7 @@ struct DotVisualizationView: View {
     }
     
     var body: some View {
-        VStack(spacing: 15) {
-            if totalDays > 90 {
-                HStack(spacing: 20) {
-                    // Month indicator
-                    HStack(spacing: 4) {
-                        Circle()
-                            .fill(.orange)
-                            .frame(width: 12, height: 12)
-                        Text("Months")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                    }
-                    
-                    // Week indicator
-                    HStack(spacing: 4) {
-                        Circle()
-                            .fill(.purple)
-                            .frame(width: 12, height: 12)
-                        Text("Weeks")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                    }
-                    
-                    // Day indicator
-                    HStack(spacing: 4) {
-                        Circle()
-                            .fill(.blue)
-                            .frame(width: 12, height: 12)
-                        Text("Days")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                    }
-                    
-                    // Passed indicator
-                    HStack(spacing: 4) {
-                        Circle()
-                            .fill(.gray)
-                            .frame(width: 12, height: 12)
-                        Text("Passed")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                    }
-                }
-            } else if totalDays > 30 {
-                HStack(spacing: 20) {
-                    // Week indicator
-                    HStack(spacing: 4) {
-                        Circle()
-                            .fill(.purple)
-                            .frame(width: 12, height: 12)
-                        Text("Weeks")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                    }
-                    
-                    // Day indicator
-                    HStack(spacing: 4) {
-                        Circle()
-                            .fill(.blue)
-                            .frame(width: 12, height: 12)
-                        Text("Days")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                    }
-                    
-                    // Passed indicator
-                    HStack(spacing: 4) {
-                        Circle()
-                            .fill(.gray)
-                            .frame(width: 12, height: 12)
-                        Text("Passed")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                    }
-                }
-            }
-            
+        VStack(spacing: 20) {
             LazyVGrid(columns: Array(repeating: GridItem(.fixed(dotSize), spacing: spacing), count: columns), spacing: spacing) {
                 ForEach(0..<min(totalUnits, 365), id: \.self) { index in
                     Circle()
@@ -633,10 +614,9 @@ struct DotVisualizationView: View {
             }
             
             if totalDays > 365 {
-                Text("\(totalDays - 365) more days...")
+                Text("\(totalDays - 365) more time units...")
                     .font(.caption)
                     .foregroundColor(.secondary)
-                    .padding(.top, 10)
             }
         }
         .padding()
