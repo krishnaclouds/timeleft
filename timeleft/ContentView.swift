@@ -22,6 +22,7 @@ struct ContentView: View {
         NavigationView {
             EventListView(events: $events, showingAddEvent: $showingAddEvent)
         }
+        .background(FloralBackground())
         .sheet(isPresented: $showingAddEvent) {
             AddEventView(events: $events)
         }
@@ -48,15 +49,41 @@ struct EventListView: View {
                 Text("Events")
                     .font(.largeTitle)
                     .fontWeight(.bold)
+                    .foregroundStyle(
+                        LinearGradient(
+                            colors: [Color.purple.opacity(0.8), Color.pink.opacity(0.8)],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    )
                 
                 Spacer()
                 
                 Button(action: {
                     showingAddEvent = true
                 }) {
-                    Image(systemName: "plus")
-                        .font(.title2)
-                        .foregroundColor(.blue)
+                    ZStack {
+                        Circle()
+                            .fill(
+                                LinearGradient(
+                                    colors: [Color.blue.opacity(0.1), Color.purple.opacity(0.1)],
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                )
+                            )
+                            .frame(width: 40, height: 40)
+                        
+                        Image(systemName: "plus")
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                            .foregroundStyle(
+                                LinearGradient(
+                                    colors: [Color.blue, Color.purple],
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                )
+                            )
+                    }
                 }
             }
             .padding(.horizontal)
@@ -217,12 +244,21 @@ struct AddEventView: View {
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 30) {
+            ZStack {
+                FloralBackground()
+                
+                VStack(spacing: 30) {
                 VStack(spacing: 20) {
                     Text("Add New Event")
                         .font(.largeTitle)
                         .fontWeight(.bold)
-                        .foregroundColor(.primary)
+                        .foregroundStyle(
+                            LinearGradient(
+                                colors: [Color.purple.opacity(0.8), Color.pink.opacity(0.8)],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
                     
                     VStack(alignment: .leading, spacing: 8) {
                         Text("Event Name")
@@ -258,8 +294,9 @@ struct AddEventView: View {
                         .padding(.horizontal)
                 }
                 .disabled(eventName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                }
+                .padding(.top)
             }
-            .padding(.top)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -385,24 +422,89 @@ struct EventDetailView: View {
                         daysRemaining: daysRemaining
                     )
                 }
-                .padding()
-                .background(.regularMaterial)
-                .cornerRadius(15)
+                .padding(20)
+                .background(
+                    ZStack {
+                        // Base glass-like background
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(.ultraThinMaterial)
+                        
+                        // Subtle floral overlay
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(
+                                LinearGradient(
+                                    colors: [
+                                        Color.white.opacity(0.3),
+                                        Color.pink.opacity(0.05),
+                                        Color.purple.opacity(0.05)
+                                    ],
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                )
+                            )
+                    }
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(
+                            LinearGradient(
+                                colors: [Color.white.opacity(0.5), Color.purple.opacity(0.1)],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            ),
+                            lineWidth: 1
+                        )
+                )
+                .shadow(color: Color.purple.opacity(0.1), radius: 10, x: 0, y: 5)
                 .padding(.horizontal)
             } else {
                 VStack(spacing: 10) {
                     Text("Event has passed")
                         .font(.title2)
                         .fontWeight(.semibold)
-                        .foregroundColor(.red)
+                        .foregroundStyle(
+                            LinearGradient(
+                                colors: [Color.red, Color.red.opacity(0.7)],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
                     
                     Text("\(-daysRemaining) days ago")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }
-                .padding()
-                .background(.regularMaterial)
-                .cornerRadius(15)
+                .padding(20)
+                .background(
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(.ultraThinMaterial)
+                        
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(
+                                LinearGradient(
+                                    colors: [
+                                        Color.white.opacity(0.3),
+                                        Color.red.opacity(0.05)
+                                    ],
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                )
+                            )
+                    }
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(
+                            LinearGradient(
+                                colors: [Color.white.opacity(0.5), Color.red.opacity(0.1)],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            ),
+                            lineWidth: 1
+                        )
+                )
+                .shadow(color: Color.red.opacity(0.1), radius: 10, x: 0, y: 5)
                 .padding(.horizontal)
             }
             
@@ -478,12 +580,21 @@ struct EditEventView: View {
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 30) {
-                VStack(spacing: 20) {
-                    Text("Edit Event")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundColor(.primary)
+            ZStack {
+                FloralBackground()
+                
+                VStack(spacing: 30) {
+                    VStack(spacing: 20) {
+                        Text("Edit Event")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .foregroundStyle(
+                                LinearGradient(
+                                    colors: [Color.purple.opacity(0.8), Color.pink.opacity(0.8)],
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
+                            )
                     
                     VStack(alignment: .leading, spacing: 8) {
                         Text("Event Name")
@@ -519,8 +630,9 @@ struct EditEventView: View {
                         .padding(.horizontal)
                 }
                 .disabled(eventName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                }
+                .padding(.top)
             }
-            .padding(.top)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -558,7 +670,13 @@ struct TimeUnitCard: View {
             Text(value)
                 .font(.title)
                 .fontWeight(.bold)
-                .foregroundColor(color)
+                .foregroundStyle(
+                    LinearGradient(
+                        colors: [color, color.opacity(0.7)],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    )
+                )
             
             Text(unit)
                 .font(.caption)
@@ -569,12 +687,35 @@ struct TimeUnitCard: View {
         .frame(minWidth: 60)
         .padding(.vertical, 12)
         .padding(.horizontal, 16)
-        .background(color.opacity(0.1))
+        .background(
+            ZStack {
+                // Base glass-like background
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(.regularMaterial)
+                
+                // Subtle color overlay
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(
+                        LinearGradient(
+                            colors: [color.opacity(0.08), color.opacity(0.03)],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
+            }
+        )
         .overlay(
             RoundedRectangle(cornerRadius: 12)
-                .stroke(color.opacity(0.3), lineWidth: 1)
+                .stroke(
+                    LinearGradient(
+                        colors: [color.opacity(0.2), color.opacity(0.1)],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    ),
+                    lineWidth: 1
+                )
         )
-        .cornerRadius(12)
+        .shadow(color: color.opacity(0.1), radius: 4, x: 0, y: 2)
     }
 }
 
@@ -651,6 +792,76 @@ struct DotVisualizationView: View {
             // For periods <= 30 days, each dot represents 1 day
             return .blue
         }
+    }
+}
+
+struct FloralBackground: View {
+    var body: some View {
+        ZStack {
+            // Base gradient background
+            LinearGradient(
+                colors: [
+                    Color(red: 0.98, green: 0.95, blue: 0.92),  // Warm white
+                    Color(red: 0.95, green: 0.92, blue: 0.95),  // Light lavender
+                    Color(red: 0.92, green: 0.95, blue: 0.92)   // Soft mint
+                ],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            
+            // Subtle floral elements
+            GeometryReader { geometry in
+                // Large soft circles (petals)
+                Circle()
+                    .fill(
+                        RadialGradient(
+                            colors: [Color.pink.opacity(0.05), Color.pink.opacity(0.01)],
+                            center: .center,
+                            startRadius: 0,
+                            endRadius: 120
+                        )
+                    )
+                    .frame(width: 240, height: 240)
+                    .position(x: geometry.size.width * 0.2, y: geometry.size.height * 0.15)
+                
+                Circle()
+                    .fill(
+                        RadialGradient(
+                            colors: [Color.purple.opacity(0.04), Color.purple.opacity(0.01)],
+                            center: .center,
+                            startRadius: 0,
+                            endRadius: 100
+                        )
+                    )
+                    .frame(width: 200, height: 200)
+                    .position(x: geometry.size.width * 0.8, y: geometry.size.height * 0.3)
+                
+                Circle()
+                    .fill(
+                        RadialGradient(
+                            colors: [Color.blue.opacity(0.03), Color.blue.opacity(0.01)],
+                            center: .center,
+                            startRadius: 0,
+                            endRadius: 80
+                        )
+                    )
+                    .frame(width: 160, height: 160)
+                    .position(x: geometry.size.width * 0.1, y: geometry.size.height * 0.7)
+                
+                Circle()
+                    .fill(
+                        RadialGradient(
+                            colors: [Color.orange.opacity(0.03), Color.orange.opacity(0.01)],
+                            center: .center,
+                            startRadius: 0,
+                            endRadius: 90
+                        )
+                    )
+                    .frame(width: 180, height: 180)
+                    .position(x: geometry.size.width * 0.9, y: geometry.size.height * 0.8)
+            }
+        }
+        .ignoresSafeArea()
     }
 }
 
