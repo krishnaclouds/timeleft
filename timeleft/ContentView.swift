@@ -8,10 +8,17 @@
 import SwiftUI
 
 struct Event: Identifiable, Codable {
-    let id = UUID()
+    let id: UUID
     var name: String
     var date: Date
-    var createdAt: Date = Date()
+    var createdAt: Date
+    
+    init(name: String, date: Date) {
+        self.id = UUID()
+        self.name = name
+        self.date = date
+        self.createdAt = Date()
+    }
 }
 
 struct ContentView: View {
@@ -44,8 +51,11 @@ struct EventListView: View {
     @Binding var showingAddEvent: Bool
     
     var body: some View {
-        VStack {
-            HStack {
+        ZStack {
+            FloralBackground()
+            
+            VStack {
+                HStack {
                 Text("Events")
                     .font(.largeTitle)
                     .fontWeight(.bold)
@@ -94,32 +104,116 @@ struct EventListView: View {
                 VStack(spacing: 20) {
                     Image(systemName: "calendar.badge.plus")
                         .font(.system(size: 60))
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(
+                            LinearGradient(
+                                colors: [Color.purple.opacity(0.6), Color.pink.opacity(0.6)],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
                     
                     Text("No Events Yet")
                         .font(.title2)
                         .fontWeight(.semibold)
-                        .foregroundColor(.primary)
+                        .foregroundStyle(
+                            LinearGradient(
+                                colors: [Color.purple.opacity(0.8), Color.pink.opacity(0.8)],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
                     
                     Text("Tap the + button to add your first event")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
                 }
+                .padding(30)
+                .background(
+                    RoundedRectangle(cornerRadius: 20)
+                        .fill(.ultraThinMaterial)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 20)
+                                .fill(
+                                    LinearGradient(
+                                        colors: [
+                                            Color.white.opacity(0.3),
+                                            Color.pink.opacity(0.05),
+                                            Color.purple.opacity(0.05)
+                                        ],
+                                        startPoint: .topLeading,
+                                        endPoint: .bottomTrailing
+                                    )
+                                )
+                        )
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(
+                                    LinearGradient(
+                                        colors: [Color.white.opacity(0.5), Color.purple.opacity(0.1)],
+                                        startPoint: .topLeading,
+                                        endPoint: .bottomTrailing
+                                    ),
+                                    lineWidth: 1
+                                )
+                        )
+                        .shadow(color: Color.purple.opacity(0.1), radius: 10, x: 0, y: 5)
+                )
+                .padding(.horizontal)
                 Spacer()
             } else {
                 List {
                     ForEach(events.sorted(by: { $0.date < $1.date })) { event in
                         NavigationLink(destination: EventDetailView(event: event, events: $events)) {
                             EventRowView(event: event)
+                                .padding(.horizontal, 20)
+                                .padding(.vertical, 12)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 16)
+                                        .fill(.ultraThinMaterial)
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 16)
+                                                .fill(
+                                                    LinearGradient(
+                                                        colors: [
+                                                            Color.white.opacity(0.4),
+                                                            Color.pink.opacity(0.08),
+                                                            Color.purple.opacity(0.05)
+                                                        ],
+                                                        startPoint: .topLeading,
+                                                        endPoint: .bottomTrailing
+                                                    )
+                                                )
+                                        )
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 16)
+                                                .stroke(
+                                                    LinearGradient(
+                                                        colors: [Color.white.opacity(0.6), Color.purple.opacity(0.2)],
+                                                        startPoint: .topLeading,
+                                                        endPoint: .bottomTrailing
+                                                    ),
+                                                    lineWidth: 1
+                                                )
+                                        )
+                                        .shadow(color: Color.purple.opacity(0.1), radius: 8, x: 0, y: 4)
+                                )
+                                .padding(.horizontal, 16)
+                                .padding(.vertical, 6)
+                                .listRowSeparator(.hidden)
+                                .listRowBackground(Color.clear)
+                                .listRowInsets(EdgeInsets())
                         }
                     }
                     .onDelete(perform: deleteEvents)
                 }
                 .listStyle(PlainListStyle())
+                .scrollContentBackground(.hidden)
+                .padding(.top, 8)
             }
         }
         .navigationBarHidden(true)
+        }
     }
     
     private func deleteEvents(offsets: IndexSet) {
@@ -198,7 +292,7 @@ struct EventRowView: View {
                     .foregroundColor(.secondary)
             }
         }
-        .padding(.vertical, 8)
+        .padding(.vertical, 4)
     }
     
     private func daysUntil(_ date: Date) -> Int {
@@ -329,7 +423,10 @@ struct EventDetailView: View {
     @State private var showingEditEvent = false
     
     var body: some View {
-        VStack(spacing: 30) {
+        ZStack {
+            FloralBackground()
+            
+            VStack(spacing: 30) {
             VStack(spacing: 15) {
                 Text(event.name)
                     .font(.largeTitle)
@@ -509,8 +606,8 @@ struct EventDetailView: View {
             }
             
             Spacer()
+            }
         }
-        .padding()
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
