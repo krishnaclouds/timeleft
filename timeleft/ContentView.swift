@@ -42,7 +42,7 @@ struct ContentView: View {
                         )
                     }
                     .padding()
-                    .background(Color(UIColor.systemGray6))
+                    .background(.regularMaterial)
                     .cornerRadius(15)
                     .padding(.horizontal)
                 } else {
