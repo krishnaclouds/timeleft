@@ -42,7 +42,13 @@ struct ContentView: View {
         if let data = UserDefaults.standard.data(forKey: "events"),
            let decodedEvents = try? JSONDecoder().decode([Event].self, from: data) {
             events = decodedEvents
+            syncEventsWithWidget()
         }
+    }
+    
+    private func syncEventsWithWidget() {
+        let sharedEvents = events.map { SharedEvent(id: $0.id, name: $0.name, date: $0.date, createdAt: $0.createdAt) }
+        SharedDataManager.shared.saveEvents(sharedEvents)
     }
 }
 
@@ -230,6 +236,12 @@ struct EventListView: View {
         if let encoded = try? JSONEncoder().encode(events) {
             UserDefaults.standard.set(encoded, forKey: "events")
         }
+        syncEventsWithWidget()
+    }
+    
+    private func syncEventsWithWidget() {
+        let sharedEvents = events.map { SharedEvent(id: $0.id, name: $0.name, date: $0.date, createdAt: $0.createdAt) }
+        SharedDataManager.shared.saveEvents(sharedEvents)
     }
 }
 
@@ -413,6 +425,12 @@ struct AddEventView: View {
         if let encoded = try? JSONEncoder().encode(events) {
             UserDefaults.standard.set(encoded, forKey: "events")
         }
+        syncEventsWithWidget()
+    }
+    
+    private func syncEventsWithWidget() {
+        let sharedEvents = events.map { SharedEvent(id: $0.id, name: $0.name, date: $0.date, createdAt: $0.createdAt) }
+        SharedDataManager.shared.saveEvents(sharedEvents)
     }
 }
 
@@ -754,6 +772,12 @@ struct EditEventView: View {
         if let encoded = try? JSONEncoder().encode(events) {
             UserDefaults.standard.set(encoded, forKey: "events")
         }
+        syncEventsWithWidget()
+    }
+    
+    private func syncEventsWithWidget() {
+        let sharedEvents = events.map { SharedEvent(id: $0.id, name: $0.name, date: $0.date, createdAt: $0.createdAt) }
+        SharedDataManager.shared.saveEvents(sharedEvents)
     }
 }
 

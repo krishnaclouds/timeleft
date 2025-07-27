@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		6C475EB82E350DDE0042B7BD /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C475EB72E350DDE0042B7BD /* WidgetKit.framework */; };
+		6C475EBA2E350DDE0042B7BD /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C475EB92E350DDE0042B7BD /* SwiftUI.framework */; };
+		6C475EC92E350DE00042B7BD /* TimeleftWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 6C475EB52E350DDE0042B7BD /* TimeleftWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		6C475E772E33D43A0042B7BD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -21,17 +27,61 @@
 			remoteGlobalIDString = 6C475E672E33D4380042B7BD;
 			remoteInfo = timeleft;
 		};
+		6C475EC72E350DE00042B7BD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6C475E602E33D4380042B7BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6C475EB42E350DDE0042B7BD;
+			remoteInfo = TimeleftWidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6C475ECE2E350DE00042B7BD /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				6C475EC92E350DE00042B7BD /* TimeleftWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6C475E682E33D4380042B7BD /* timeleft.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = timeleft.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C475E762E33D43A0042B7BD /* timeleftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = timeleftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C475E802E33D43A0042B7BD /* timeleftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = timeleftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C475EB52E350DDE0042B7BD /* TimeleftWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TimeleftWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C475EB72E350DDE0042B7BD /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		6C475EB92E350DDE0042B7BD /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		6C475ECA2E350DE00042B7BD /* Exceptions for "TimeleftWidget" folder in "TimeleftWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 6C475EB42E350DDE0042B7BD /* TimeleftWidgetExtension */;
+		};
+		6C475ED52E3629870042B7BD /* Exceptions for "timeleft" folder in "TimeleftWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				SharedModels.swift,
+			);
+			target = 6C475EB42E350DDE0042B7BD /* TimeleftWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		6C475E6A2E33D4380042B7BD /* timeleft */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				6C475ED52E3629870042B7BD /* Exceptions for "timeleft" folder in "TimeleftWidgetExtension" target */,
+			);
 			path = timeleft;
 			sourceTree = "<group>";
 		};
@@ -43,6 +93,14 @@
 		6C475E832E33D43A0042B7BD /* timeleftUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = timeleftUITests;
+			sourceTree = "<group>";
+		};
+		6C475EBB2E350DDE0042B7BD /* TimeleftWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				6C475ECA2E350DE00042B7BD /* Exceptions for "TimeleftWidget" folder in "TimeleftWidgetExtension" target */,
+			);
+			path = TimeleftWidget;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -69,6 +127,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6C475EB22E350DDE0042B7BD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6C475EBA2E350DDE0042B7BD /* SwiftUI.framework in Frameworks */,
+				6C475EB82E350DDE0042B7BD /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -78,6 +145,8 @@
 				6C475E6A2E33D4380042B7BD /* timeleft */,
 				6C475E792E33D43A0042B7BD /* timeleftTests */,
 				6C475E832E33D43A0042B7BD /* timeleftUITests */,
+				6C475EBB2E350DDE0042B7BD /* TimeleftWidget */,
+				6C475EB62E350DDE0042B7BD /* Frameworks */,
 				6C475E692E33D4380042B7BD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,8 +157,18 @@
 				6C475E682E33D4380042B7BD /* timeleft.app */,
 				6C475E762E33D43A0042B7BD /* timeleftTests.xctest */,
 				6C475E802E33D43A0042B7BD /* timeleftUITests.xctest */,
+				6C475EB52E350DDE0042B7BD /* TimeleftWidgetExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		6C475EB62E350DDE0042B7BD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6C475EB72E350DDE0042B7BD /* WidgetKit.framework */,
+				6C475EB92E350DDE0042B7BD /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -102,10 +181,12 @@
 				6C475E642E33D4380042B7BD /* Sources */,
 				6C475E652E33D4380042B7BD /* Frameworks */,
 				6C475E662E33D4380042B7BD /* Resources */,
+				6C475ECE2E350DE00042B7BD /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				6C475EC82E350DE00042B7BD /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				6C475E6A2E33D4380042B7BD /* timeleft */,
@@ -163,6 +244,28 @@
 			productReference = 6C475E802E33D43A0042B7BD /* timeleftUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		6C475EB42E350DDE0042B7BD /* TimeleftWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6C475ECB2E350DE00042B7BD /* Build configuration list for PBXNativeTarget "TimeleftWidgetExtension" */;
+			buildPhases = (
+				6C475EB12E350DDE0042B7BD /* Sources */,
+				6C475EB22E350DDE0042B7BD /* Frameworks */,
+				6C475EB32E350DDE0042B7BD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				6C475EBB2E350DDE0042B7BD /* TimeleftWidget */,
+			);
+			name = TimeleftWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = TimeleftWidgetExtension;
+			productReference = 6C475EB52E350DDE0042B7BD /* TimeleftWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -184,6 +287,9 @@
 						CreatedOnToolsVersion = 16.4;
 						TestTargetID = 6C475E672E33D4380042B7BD;
 					};
+					6C475EB42E350DDE0042B7BD = {
+						CreatedOnToolsVersion = 16.4;
+					};
 				};
 			};
 			buildConfigurationList = 6C475E632E33D4380042B7BD /* Build configuration list for PBXProject "timeleft" */;
@@ -203,6 +309,7 @@
 				6C475E672E33D4380042B7BD /* timeleft */,
 				6C475E752E33D43A0042B7BD /* timeleftTests */,
 				6C475E7F2E33D43A0042B7BD /* timeleftUITests */,
+				6C475EB42E350DDE0042B7BD /* TimeleftWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -223,6 +330,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		6C475E7E2E33D43A0042B7BD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6C475EB32E350DDE0042B7BD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -253,6 +367,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6C475EB12E350DDE0042B7BD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -265,6 +386,11 @@
 			isa = PBXTargetDependency;
 			target = 6C475E672E33D4380042B7BD /* timeleft */;
 			targetProxy = 6C475E812E33D43A0042B7BD /* PBXContainerItemProxy */;
+		};
+		6C475EC82E350DE00042B7BD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6C475EB42E350DDE0042B7BD /* TimeleftWidgetExtension */;
+			targetProxy = 6C475EC72E350DE00042B7BD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -391,6 +517,7 @@
 				CODE_SIGN_ENTITLEMENTS = timeleft/timeleft.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -428,6 +555,7 @@
 				CODE_SIGN_ENTITLEMENTS = timeleft/timeleft.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -543,6 +671,63 @@
 			};
 			name = Release;
 		};
+		6C475ECC2E350DE00042B7BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TimeleftWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TimeleftWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.koffeecuptales.timeleft.TimeleftWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6C475ECD2E350DE00042B7BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TimeleftWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TimeleftWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.koffeecuptales.timeleft.TimeleftWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -578,6 +763,15 @@
 			buildConfigurations = (
 				6C475E912E33D43A0042B7BD /* Debug */,
 				6C475E922E33D43A0042B7BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6C475ECB2E350DE00042B7BD /* Build configuration list for PBXNativeTarget "TimeleftWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6C475ECC2E350DE00042B7BD /* Debug */,
+				6C475ECD2E350DE00042B7BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

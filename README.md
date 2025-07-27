@@ -12,6 +12,11 @@ A clean, intuitive iOS SwiftUI application that helps you visualize time remaini
 - **Visual Progress**: Dot-based visualization where each dot represents a time unit
 - **Color-Coded Display**: Different colors for months (orange), weeks (purple), and days (blue)
 - **Event List**: Clean interface showing all your events sorted by date
+- **Home Screen Widgets**: Display event countdowns directly on your home screen
+  - Small, Medium, and Large widget sizes
+  - Configurable event selection per widget
+  - Floral theme matching the main app
+  - Automatic updates with app data synchronization
 - **Persistent Storage**: Events are saved locally using UserDefaults
 
 ## Screenshots
@@ -38,6 +43,7 @@ A clean, intuitive iOS SwiftUI application that helps you visualize time remaini
 2. **View Details**: Tap any event to see detailed time breakdown and dot visualization
 3. **Edit Event**: Use the "Edit" button in event details to modify events
 4. **Delete Event**: Swipe left on any event in the list
+5. **Add Widget**: Long press home screen → tap "+" → search "Timeleft" → select widget size → configure event selection
 
 ## Time Format Logic
 
